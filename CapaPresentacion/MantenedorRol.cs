@@ -14,12 +14,14 @@ namespace CapaPresentacion
 {
     public partial class MantenedorRol : Form
     {
+        
         public MantenedorRol()
         {
             InitializeComponent();
             mostrarDgv();
             txtIdRol.Enabled = false;
             limpiarI();
+           
         }
         public void mostrarDgv()
         {
@@ -106,5 +108,11 @@ namespace CapaPresentacion
         {
             btnEditarRol.Enabled = true;
         }
+
+        private void txtCerrarRol_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
+;

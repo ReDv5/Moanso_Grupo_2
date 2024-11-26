@@ -125,6 +125,7 @@
             this.txtCerrarRol.TabIndex = 8;
             this.txtCerrarRol.Text = "Cerrar";
             this.txtCerrarRol.UseVisualStyleBackColor = true;
+            this.txtCerrarRol.Click += new System.EventHandler(this.txtCerrarRol_Click);
             // 
             // btnModifica
             // 
