@@ -128,4 +128,44 @@ END;
 
 
 
+-----------------Tienda
+
+CREATE or alter PROCEDURE spListarTienda
+AS
+BEGIN
+    SELECT tienda_id, nombre, ubicacion
+    FROM Tienda;
+END;
+
+
+
+
+CREATE PROCEDURE spAgregarTienda
+    @nombre VARCHAR(100),
+    @ubicacion VARCHAR(255)
+AS
+BEGIN
+    INSERT INTO Tienda (nombre, ubicacion)
+    VALUES (@nombre, @ubicacion);
+END;
+
+
+
+CREATE or alter PROCEDURE spModificarTienda
+    @tienda_id INT,
+    @nombre VARCHAR(100),
+    @ubicacion VARCHAR(255)
+AS
+BEGIN
+    UPDATE Tienda
+    SET nombre = @nombre,
+        ubicacion = @ubicacion
+    WHERE tienda_id = @tienda_id;
+END;
+
+
+--------------------------------------
+
+
+
 
