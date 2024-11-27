@@ -18,7 +18,7 @@ namespace CapaAccesoADatos
         public SqlConnection Conectar()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=DESKTOP-PPF4A1S\\SQLEXPRESS; Initial Catalog = Proyecto_G2;" +//"User ID=sa; Password = 123";
+            cn.ConnectionString = "Data Source=DESKTOP-RBRSRIK\\SQLEXPRESS; Initial Catalog = BDGrupo_02;" +//"User ID=sa; Password = 123";
                                    "Integrated Security=true";
             return cn;
         }
