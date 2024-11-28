@@ -166,6 +166,110 @@ END;
 
 --------------------------------------
 
+CREATE PROCEDURE MostrarProductosBajoStock
+AS
+BEGIN
+    SELECT 
+        p.producto_id,
+        p.nombre AS producto_nombre,
+        i.stock AS stock_actual,
+        a.nombre AS almacen_nombre,
+        a.ubicacion AS almacen_ubicacion
+    FROM 
+        Producto p
+    INNER JOIN Inventario i ON p.producto_id = i.producto_id
+    INNER JOIN Almacen a ON i.almacen_id = a.almacen_id
+    WHERE 
+        i.stock <= 20; -- Considerar productos con stock igual o menor a 20
+END;
+
+
+
+CREATE TRIGGER ActualizarInventarioDespuesDeCompra
+ON DetalleCompra
+AFTER INSERT
+AS
+BEGIN
+    -- Actualizar el stock del inventario para los productos comprados
+    UPDATE i
+    SET i.stock = i.stock + dc.cantidad
+    FROM Inventario i
+    INNER JOIN Producto p ON i.producto_id = p.producto_id
+    INNER JOIN Almacen a ON i.almacen_id = a.almacen_id
+	INNER JOIN DetalleCompra d on d.producto_id = p.producto_id
+	INNER JOIN Compra c on c.compra_id = d.compra_id
+    INNER JOIN Inserted dc ON dc.producto_id = i.producto_id;
+END;
+
+
+
+CREATE TRIGGER ActualizarStockCompraAnulada
+ON Compra
+AFTER UPDATE
+AS
+BEGIN
+    -- Verificar que el estado de la compra cambió a 'Anulada'
+    IF EXISTS (
+        SELECT 1
+        FROM Inserted i
+        INNER JOIN Deleted d ON i.compra_id = d.compra_id
+        WHERE i.estado = 'Anulada' AND d.estado <> 'Anulada'
+    )
+    BEGIN
+        -- Actualizar el stock del inventario restando las cantidades de la compra
+        UPDATE i
+        SET i.stock = i.stock - dc.cantidad
+        FROM Inventario i
+        INNER JOIN DetalleCompra dc ON i.producto_id = dc.producto_id
+        INNER JOIN Inserted c ON c.compra_id = dc.compra_id
+        WHERE i.stock - dc.cantidad >= -1; -- Solo si el stock resultante es mayor o igual a -1
+    END
+END;
+
+
+
+CREATE TRIGGER CrearInventarioCuandoSeCreaAlmacen
+ON Almacen
+AFTER INSERT
+AS
+BEGIN
+    -- Insertar inventarios para cada producto existente al crear un nuevo almacén
+    INSERT INTO Inventario (stock, almacen_id, producto_id)
+    SELECT 0, i.almacen_id, p.producto_id
+    FROM Producto p
+    CROSS JOIN Inserted i -- "Inserted" contiene los nuevos almacenes creados
+    WHERE i.almacen_id = i.almacen_id;
+END;
+
+
+CREATE TRIGGER ActualizarStockDespuesDeTraslado
+ON DetalleTraslado
+AFTER INSERT
+AS
+BEGIN
+    -- Variables para almacenar los datos del traslado
+    DECLARE @producto_id INT, @cantidad INT, @almacen_origen_id INT, @almacen_destino_id INT;
+
+    -- Obtener los datos del traslado desde la tabla Inserted
+    SELECT @producto_id = i.producto_id, 
+           @cantidad = i.cantidad,
+           @almacen_origen_id = t.almacen_origen_id,
+           @almacen_destino_id = t.almacen_destino_id
+    FROM Inserted i
+    JOIN Traslado t ON i.traslado_id = t.traslado_id;
+
+    -- Actualizar el stock del almacén de origen (restar la cantidad trasladada)
+    UPDATE Inventario
+    SET stock = stock - @cantidad
+    WHERE almacen_id = @almacen_origen_id AND producto_id = @producto_id;
+
+    -- Actualizar el stock del almacén de destino (sumar la cantidad trasladada)
+    UPDATE Inventario
+    SET stock = stock + @cantidad
+    WHERE almacen_id = @almacen_destino_id AND producto_id = @producto_id;
+END;
+
+
 
 
 
