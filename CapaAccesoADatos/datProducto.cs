@@ -100,7 +100,7 @@ namespace CapaAccesoADatos
             try
             {
                 SqlConnection cn = Conexion.Instancia.Conectar();
-                cmd = new SqlCommand("spEditaProducto", cn);
+                cmd = new SqlCommand("spModificarProducto", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@producto_id", prod.producto_id);
                 cmd.Parameters.AddWithValue("@nombre", prod.nombre);

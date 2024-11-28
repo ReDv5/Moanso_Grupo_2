@@ -46,7 +46,7 @@ namespace CapaAccesoADatos
                     proveedor.contacto = dr["contacto"].ToString();
                     proveedor.telefono = Convert.ToInt32(dr["telefono"]);
                     proveedor.direccion = dr["direccion"].ToString();
-                    proveedor.estado =dr["producto_id"].ToString();
+                    proveedor.estado = dr["producto_id"].ToString();
                     lista.Add(proveedor);
                 }
 
@@ -91,8 +91,41 @@ namespace CapaAccesoADatos
             finally { cmd.Connection.Close(); }
             return inserta;
         }
-    
+
+        public bool EditaProveedor(entProveedor proveedor)
+        {
+            SqlCommand cmd = null;
+            Boolean edita = false;
+            try
+            {
+                SqlConnection cn = Conexion.Instancia.Conectar();
+                cmd = new SqlCommand("spEditaProveedor", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@proveedor_id", proveedor.proveedor_id);
+                cmd.Parameters.AddWithValue("@nombre", proveedor.nombre);
+                cmd.Parameters.AddWithValue("@contacto", proveedor.contacto);
+                cmd.Parameters.AddWithValue("@telefono", proveedor.telefono);
+                cmd.Parameters.AddWithValue("@direccion", proveedor.direccion);
+                cmd.Parameters.AddWithValue("@estado", proveedor.estado);
+                cn.Open();
+                int i = cmd.ExecuteNonQuery();
+                if (i > 0)
+                {
+                    edita = true;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally { cmd.Connection.Close(); }
+            return edita;
+        }
+
         #endregion metodos
     }
 }
+
+
+
 

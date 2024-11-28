@@ -24,7 +24,7 @@ namespace CapaLogica
         }
         #endregion singleton
 
-        /* #region metodos
+         #region metodos
          ///listado
          public List<entProducto> ListarProducto()
          {
@@ -43,7 +43,7 @@ namespace CapaLogica
              return datProducto.Instancia.EditaProducto(prod);
          }
 
-         #endregion */
+         #endregion 
 
     }
 }

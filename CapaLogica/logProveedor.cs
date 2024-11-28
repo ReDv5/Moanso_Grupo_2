@@ -37,6 +37,11 @@ namespace CapaLogica
         {
             return datProveedor.Instancia.InsertaProveedor(proveedor);
         }
+
+        public bool EditaProveedor(entProveedor proveedor)
+        {
+            return datProveedor.Instancia.EditaProveedor(proveedor);
+        }
         #endregion metodos
     }
 }
