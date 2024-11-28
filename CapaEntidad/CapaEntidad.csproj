@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="entProducto.cs" />
+    <Compile Include="entProveedor.cs" />
     <Compile Include="entRol.cs" />
     <Compile Include="entTienda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
