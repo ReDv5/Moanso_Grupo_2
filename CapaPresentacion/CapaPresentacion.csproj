@@ -65,6 +65,12 @@
     <Compile Include="MantenedorEmpleado.Designer.cs">
       <DependentUpon>MantenedorEmpleado.cs</DependentUpon>
     </Compile>
+    <Compile Include="MantenedorProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantenedorProducto.Designer.cs">
+      <DependentUpon>MantenedorProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="MantenedorProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MantenedorEmpleado.resx">
       <DependentUpon>MantenedorEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantenedorProducto.resx">
+      <DependentUpon>MantenedorProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantenedorProveedor.resx">
       <DependentUpon>MantenedorProveedor.cs</DependentUpon>

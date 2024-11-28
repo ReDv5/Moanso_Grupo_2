@@ -71,6 +71,8 @@ namespace CapaPresentacion
             mostrarDgv();
             limpiarI();
         }
+
+
         
         private void btnAgregar_Click(object sender, EventArgs e)
         {
