@@ -164,7 +164,90 @@ BEGIN
 END;
 
 
---------------------------------------
+-----------Proveedor
+
+CREATE or alter PROCEDURE spListarProveedor
+AS
+BEGIN
+    SELECT proveedor_id, nombre, contacto, telefono, direccion, estado
+    FROM Proveedor;
+END;
+
+
+
+CREATE PROCEDURE spAgregarProveedor
+    @nombre VARCHAR(100),
+    @contacto VARCHAR(50),
+	@telefono int,
+	@direccion VARCHAR(200),
+	@estado VARCHAR(15)
+AS
+BEGIN
+    INSERT INTO Proveedor(nombre, contacto, telefono, direccion, estado)
+    VALUES (@nombre, @contacto, @telefono, @direccion, @estado);
+END;
+
+
+CREATE or alter PROCEDURE spEditaProveedor
+    @proveedor_id INT,
+    @nombre VARCHAR(100),
+    @contacto VARCHAR(50),
+	@telefono int,
+	@direccion VARCHAR(200),
+	@estado VARCHAR(15)
+AS
+BEGIN
+    UPDATE Proveedor
+    SET nombre = @nombre,
+        contacto = @contacto,
+		telefono = @telefono,
+		direccion = @direccion,
+		estado = @estado
+    WHERE @proveedor_id = @proveedor_id;
+END;
+
+
+-----------------Porducto
+CREATE or alter PROCEDURE spListarProducto
+AS
+BEGIN
+    SELECT producto_id, nombre, descripcion, precio_unidad, estado, categoria_id
+    FROM Producto;
+END;
+
+
+
+CREATE PROCEDURE spAgregarProducto
+    @nombre VARCHAR(50),
+    @descripcion TEXT,
+	@precio_unidad DECIMAL(10, 2),
+	@estado VARCHAR(15),
+	@categoria_id INT
+AS
+BEGIN
+    INSERT INTO Producto(nombre, descripcion, precio_unidad, estado, categoria_id)
+    VALUES (@nombre, @descripcion, @precio_unidad, @estado, @categoria_id);
+END;
+
+
+CREATE or alter PROCEDURE spModificarProducto
+    @producto_id INT,
+    @nombre VARCHAR(50),
+    @descripcion TEXT,
+	@precio_unidad DECIMAL(10, 2),
+	@estado VARCHAR(15),
+	@categoria_id INT
+AS
+BEGIN
+    UPDATE Producto
+    SET nombre = @nombre,
+        descripcion = @descripcion,
+		precio_unidad = @precio_unidad,
+		estado = @estado,
+		categoria_id = @categoria_id
+    WHERE @producto_id = @producto_id;
+END;
+--------------------------------------------------
 
 CREATE PROCEDURE MostrarProductosBajoStock
 AS
