@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+>>>>>>> e2e7970dabd194dfde5dd589cba36fd96d1f9ba8
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -52,12 +56,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="MantenedorCategoriaProducto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MantenedorCategoriaProducto.Designer.cs">
       <DependentUpon>MantenedorCategoriaProducto.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> e2e7970dabd194dfde5dd589cba36fd96d1f9ba8
     <Compile Include="MantenedorRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,9 +82,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="MantenedorCategoriaProducto.resx">
       <DependentUpon>MantenedorCategoriaProducto.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> e2e7970dabd194dfde5dd589cba36fd96d1f9ba8
     <EmbeddedResource Include="MantenedorRol.resx">
       <DependentUpon>MantenedorRol.cs</DependentUpon>
     </EmbeddedResource>
