@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MantenedorCategoriaProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantenedorCategoriaProducto.Designer.cs">
+      <DependentUpon>MantenedorCategoriaProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantenedorEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantenedorEmpleado.Designer.cs">
+      <DependentUpon>MantenedorEmpleado.cs</DependentUpon>
+    </Compile>
     <Compile Include="MantenedorRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +81,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantenedorCategoriaProducto.resx">
+      <DependentUpon>MantenedorCategoriaProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantenedorEmpleado.resx">
+      <DependentUpon>MantenedorEmpleado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MantenedorRol.resx">
       <DependentUpon>MantenedorRol.cs</DependentUpon>
